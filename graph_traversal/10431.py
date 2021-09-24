@@ -4,7 +4,6 @@ for i in range(times):
     cases.append(list(map(int, input().split()[1:])))
 
 result = []
-# print(cases)
 for case in cases:
     line = [case[0]]
     backstep_cnt = 0
