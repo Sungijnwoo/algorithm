@@ -6,6 +6,7 @@ q = deque([(0, 0, 1)])
 noc = [(1, 0), (0, 1), (-1, 0), (0, -1)]
 
 while q:
+    print(q)
     y, x, cnt = q.popleft()
     if y == N-1 and x == M-1:
         break
