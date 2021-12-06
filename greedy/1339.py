@@ -20,13 +20,6 @@ while q:
     num -= 1
 print(result)
 
-# def cvt(i):
-#     return convert[i]
-
-# alpha_list = [list(map(cvt, i)) for i in alpha_list]
-# number_list = [int(''.join(i)) for i in alpha_list]
-
-# print(sum(number_list))
     
 
 
