@@ -12,7 +12,7 @@ def rotate(key):
 def check(lock):
     lock_length = len(lock) // 3
     for i in range(lock_length, lock_length*2):
-        
+        pass
 def solution(key, lock):
     n = len(lock)
     m = len(key)
@@ -29,6 +29,7 @@ def solution(key, lock):
             key = rotate(key)
         for x in range(n*2):
             for j in range(n*2):
+                pass
         
 
 
