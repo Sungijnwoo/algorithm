@@ -21,5 +21,3 @@ while q:
 print(result)
 
     
-
-
