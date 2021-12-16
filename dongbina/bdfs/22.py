@@ -8,6 +8,7 @@ def solution(board):
     noc = [(0, 1), (1, 0), (-1, 0), (0, -1)]
     visited = []
     while q:
+        print(q)
         (left_y, left_x), (right_y, right_x), cnt = q.popleft()
 
         if (left_y == len(board)-1 and left_x == len(board)-1) or (right_y == len(board)-1 and right_x == len(board)-1):
@@ -53,11 +54,5 @@ def solution(board):
                             q.append(((left_n_y, left_n_x), (right_n_y, right_n_x), cnt+1))
                             visited.append(((left_n_y, left_n_x), (right_n_y, right_n_x)))
     
-
-
-
-
-
-
 if __name__ == "__main__":
     print(solution([[0, 0, 0, 1, 1],[0, 0, 0, 1, 0],[0, 1, 0, 1, 1],[1, 1, 0, 0, 1],[0, 0, 0, 0, 0]]))
