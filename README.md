@@ -1,2 +1,2 @@
 ## purpose
- To solve the algorithm problem which came from baekjoon
+ To solve algorithm problems from baekjoon
