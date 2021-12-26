@@ -1,16 +1,26 @@
 n = int(input())
 
-positions = [list(map(int, input().split())) for _ in range(n)]
-graph = []
-for i in range(n-1):
-    for j in range(i+1, n):
-        x1, y1, z1 = positions[i]
-        x2, y2, z2 = positions[j]
-        cost = min(abs(x1-x2), abs(y1-y2), abs(z1-z2))
-        graph.append([cost, i, j])
+x, y, z = [], [], []
+for i in range(1, n+1):
+    data = list(map(int, input().split()))
+    x.append((data[0], i))
+    y.append((data[1], i))
+    z.append((data[2], i))
+    
 
-graph.sort()
-parent = [i for i in range(n)]
+x.sort()
+y.sort()
+z.sort()
+
+edges = []
+for i in range(n-1):
+    edges.append((x[i+1][0]-x[i][0], x[i][1], x[i+1][1]))
+    edges.append((y[i+1][0]-y[i][0], y[i][1], y[i+1][1]))
+    edges.append((z[i+1][0]-z[i][0], z[i][1], z[i+1][1]))
+
+edges.sort()
+
+parent = [i for i in range(n+1)]
 total_cost = 0
 
 def find_parent(x):
@@ -27,7 +37,7 @@ def union_parent(a, b):
     else:
         parent[a] = b
 
-for cost, a, b in graph:
+for cost, a, b in edges:
     if find_parent(a) != find_parent(b):
         total_cost += cost
         union_parent(a, b)
