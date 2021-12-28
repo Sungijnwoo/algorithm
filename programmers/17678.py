@@ -24,7 +24,7 @@ def solution(n, t, m, timetable):
                 if people == m:
                     break
         timetable = timetable[end_line+1:]
-    
+
     print(bustable)
     for idx, (key, value) in enumerate(bustable.items()):
         if idx == len(bustable)-1:
@@ -39,11 +39,12 @@ def solution(n, t, m, timetable):
                 return f"{hour:02}:{minute:02}"
     
 
-
 if __name__ == "__main__":
     print(solution(1, 1, 5, ["08:00", "08:01", "08:02", "08:03"]))
     print(solution(2, 10, 2, ["09:10", "09:09", "08:00"]))
     print(solution(2, 1, 2, ["09:00", "09:00", "09:00", "09:00"]))
     print(solution(1, 1, 5, ["00:01", "00:01", "00:01", "00:01", "00:01"]))
     print(solution(1, 1, 1, ["23:59"]))
-    print(solution(10, 60	, 45, ["23:59","23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59"]))
+    print(solution(1, 1, 1, ["09:00", "09:05"]))
+    print(solution(2,10,3,["09:05","09:09","09:13"]))
+    print(solution(10, 60 , 45, ["23:59","23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59", "23:59"]))
