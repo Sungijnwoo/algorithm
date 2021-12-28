@@ -17,9 +17,12 @@ def djaik(graph, pos):
     q = [(0, pos)]
     hq.heapify(q)
     while q:
+        print(q)
+        print(distance)
         dist, now = hq.heappop(q)
         
         if distance[now] < dist:
+            print('hi')
             continue
 
         for i in graph[now]:

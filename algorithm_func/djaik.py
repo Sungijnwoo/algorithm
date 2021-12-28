@@ -7,7 +7,6 @@ def djaik(graph, pos):
     hq.heapify(q)
     while q:
         dist, now = hq.heappop(q)
-        
         if distance[now] < dist:
             continue
 
