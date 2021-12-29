@@ -35,7 +35,7 @@ def find_fish(n):
         for j in range(4):
             if graph[i][j][0] == n:
                 return i, j
-    return 'x', 'x'
+    return None
 
 def print_fish(g):
     for i in range(4):
@@ -61,16 +61,9 @@ while q:
             judge = True
             next_ate = ate + graph[ny][nx][0]
             next_graph[ny][nx][0] = "Shark"
-            print(ate, next_ate)
-            print_fish(next_graph)
-            q.append((ny, nx, next_ate, next_graph))
-            
+            # print(ate, next_ate)
+            # print_fish(next_graph)
+            q.append((ny, nx, next_ate, next_graph))         
     if judge == False:
         result = max(result, ate)
 print(result)
-            
-
-
-
-
-

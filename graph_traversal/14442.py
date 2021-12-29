@@ -25,7 +25,7 @@ while q:
                 visited[ny][nx][can_break] = cnt + 1
             elif graph[ny][nx] == '1' and can_break > 0 and visited[ny][nx][can_break-1] > cnt + 1:
                 q.append((ny, nx, can_break-1, cnt+1))
-                visited[ny][nx][can_break-1] = cnt + 1 
+                visited[ny][nx][can_break-1] = cnt + 1
 
 if not possible:
     print(-1)
