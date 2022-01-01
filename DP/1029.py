@@ -18,5 +18,3 @@ def dfs(artist, path, price):
     return count
 
 print(1 + dfs(0, 1, 0))
-for i in dp:
-    print(i)
