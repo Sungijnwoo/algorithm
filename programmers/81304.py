@@ -1,45 +1,41 @@
-import sys
 import heapq as hq
-import copy
 def solution(n, start, end, roads, traps):
-    INF = sys.maxsize
-    reverse = 0
-    graph = [[0] *(n+1) for i in range(n+1)]
-    for u, v, c in roads:
-        graph[u][v] = c
+    start -=1; end -=1;
+    INF = float("inf");
+    graph = [[] for _ in range(n)]
+    trap_dict = {trap-1:idx for idx, trap in enumerate(traps)};
+    nodes = [];
+    isVisit = [[False]*n for _ in range(1<<len(traps))]
+    
+    for road in roads:
+        start_i, end_i, cost = road
+        graph[start_i-1].append([end_i-1,cost,0])
+        graph[end_i-1].append([start_i-1,cost,1])
+    
+    hq.heappush(nodes,(0,start,0))
+    while nodes:
+        cur_time, cur_node, state = hq.heappop(nodes);
+        if cur_node == end : return cur_time;      
+        if isVisit[state][cur_node] == True: continue;
+        else: isVisit[state][cur_node] = True;
+            
+        for next_node, next_cost, road_type in graph[cur_node]:
+            next_state = state
+            cur_isTrap = 1 if cur_node in trap_dict else 0;
+            next_isTrap = 1 if next_node in trap_dict else 0;
 
-    distance = [INF for _ in range(n+1)]
-    distance[start] = 0
+            if cur_isTrap == 0 and next_isTrap == 0:
+                if road_type == 1: continue
+            elif (cur_isTrap + next_isTrap) == 1:
+                node_i = cur_node if cur_isTrap == 1 else next_node
+                isTrapOn = (state & (1<<trap_dict[node_i]))>>trap_dict[node_i]
+                if isTrapOn != road_type: continue
+            else:
+                isTrapOn = (state & (1<<trap_dict[cur_node]))>>trap_dict[cur_node]
+                n_isTrapOn = (state & (1<<trap_dict[next_node]))>>trap_dict[next_node]
+                if (isTrapOn ^ n_isTrapOn) != road_type: continue
+            
+            if next_isTrap == 1:
+                next_state = state ^ (1<<trap_dict[next_node])
 
-    q = [(0, start, graph)]
-    hq.heapify(q)
-    visited = []
-
-    while q:
-        dist, now, graph = hq.heappop(q)
-        for idx, i in enumerate(graph[now]):
-            next_graph = copy.deepcopy(graph)
-            if i != 0:
-                total_cost = dist + i
-                if (now, idx) not in visited:
-                    visited.append((now, idx))
-                    if idx in traps:
-                        distance[idx] = min(distance[idx], total_cost)
-                        next_graph = reverse_graph(next_graph, idx)
-                        hq.heappush(q, (total_cost, idx, next_graph))
-                    else:
-                        distance[idx] = min(distance[idx], total_cost)
-                        hq.heappush(q, (total_cost, idx, next_graph))
-    return distance[end]
-
-def reverse_graph(graph, n):
-    for x, i in enumerate(graph[n]):
-        graph[n][x], graph[x][n] = graph[x][n], graph[n][x]
-
-    return graph
-
-
-
-if __name__ == "__main__":
-    assert solution(3, 1, 3, [[1, 2, 2], [3, 2, 3]], [2]) == 5
-    assert solution(4, 1, 4, [[1, 2, 1], [3, 2, 1], [2, 4, 1]], [2, 3]) == 4
+            hq.heappush(nodes,(cur_time+next_cost, next_node, next_state))
