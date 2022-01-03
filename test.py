@@ -1,4 +1,7 @@
-def factorial_iterative(n):
-    return n * factorial_iterative(n-1) if n > 1 else 1
+a = int(input())
+b = input()
 
-print(factorial_iterative(5))
+for i in b[::-1]:
+    print(int(i) * a)
+
+print(a*int(b))
