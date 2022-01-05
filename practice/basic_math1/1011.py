@@ -1,20 +1,14 @@
-from collections import deque
-T = int(input())
+t = int(input())
 
-for test_case in range(T):
-    start, end = map(int, input().split())
-
-    q = deque([(start, 0, 0)])
-    noc = [-1, 0, 1]
-    while q:
-        position, distance, cnt = q.popleft()
-
-        if position == end and distance == 1:
-            break
-
-        for diff in noc:
-            next_distance = distance + diff
-            next_pos = position + next_distance
-            if next_pos <= end and next_distance > 0:
-                q.append((next_pos, next_distance, cnt+1))
-    print(cnt)
+for _ in range(t):
+    x, y = map(int,input().split())
+    distance = y - x
+    count = 0  # 이동 횟수
+    move = 1  # count별 이동 가능한 거리
+    move_plus = 0  # 이동한 거리의 합
+    while move_plus < distance :
+        count += 1
+        move_plus += move  # count 수에 해당하는 move를 더함
+        if count % 2 == 0 :  # count가 2의 배수일 때, 
+            move += 1  
+    print(count)

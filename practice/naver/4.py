@@ -46,7 +46,6 @@ def solution(status):
                 break
         if judge:
             cnt += 1
-    
     return cnt
 
 

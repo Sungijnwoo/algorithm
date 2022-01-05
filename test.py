@@ -1,7 +1,3 @@
-a = int(input())
-b = input()
+if (a := 3) > 4:
+    print('hi')
 
-for i in b[::-1]:
-    print(int(i) * a)
-
-print(a*int(b))
